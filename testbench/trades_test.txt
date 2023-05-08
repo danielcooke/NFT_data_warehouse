@@ -1,0 +1,147 @@
+const { request } = require('graphql-request');
+import { url, block_n, trades_collection_query, trades_tx_hash_query } from "./constants.js";
+
+describe('Test Trades, with Collection', () => {
+    it('Returns the first three trades', async () => {
+        const variables = {first: 3, block_n: block_n};
+        const data = await request(url, trades_collection_query, variables);
+        expect(data).toEqual({
+            trades: [
+              {
+                id: '0x00084b71486e54562e97ec5bad28732ad972c735db365901bbf21b34648850bc-0x96809f90-1',
+                collection: { id: '0xe4462eb568e2dfbb5b0ca2d3dbb1a35c9aa98aad', name: null }
+              },
+              {
+                id: '0x00112131d0650b03973ce4c3b3fabeddff8a388cd07b9ea8bafc92bf150d6bd9-0x23b872dd-8142',
+                collection: {
+                  id: '0xcbc67ea382f8a006d46eeeb7255876beb7d7f14d',
+                  name: 'WVRPS by Warpsound'
+                }
+              },
+              {
+                id: '0x0015b6007a9adb7d242a276ba753553393a7d62fb80eecc87fd02bc100453ef6-0xfb16a595-4643',
+                collection: {
+                  id: '0x67421c8622f8e38fe9868b4636b8dc855347d570',
+                  name: 'Squishiverse'
+                }
+              }
+            ]
+        });
+    });
+});
+describe('Test Trades, with Transaction Hash', () => {
+    it('Returns the first 15 trades', async () => {
+        const variables = {first: 15, block_n: block_n};
+        const data = await request(url, trades_tx_hash_query, variables);
+        expect(data).toEqual({
+            trades: [
+              {
+                id: '0x00084b71486e54562e97ec5bad28732ad972c735db365901bbf21b34648850bc-0x96809f90-1',
+                tokenId: '1',
+                buyer: '0xa04f381ce78a109b222c1401b2029509c762769a',
+                seller: '0xbad979702a09841a7672fb6e3c12c3368dff2a19',
+                transactionHash: '0x00084b71486e54562e97ec5bad28732ad972c735db365901bbf21b34648850bc'
+              },
+              {
+                id: '0x00112131d0650b03973ce4c3b3fabeddff8a388cd07b9ea8bafc92bf150d6bd9-0x23b872dd-8142',
+                tokenId: '8142',
+                buyer: '0x16172344b3ec9a0f67d4421eac3fd72aeaf1ab65',
+                seller: '0x47bb88fe5b083da82e0e73b416b067122af13a0d',
+                transactionHash: '0x00112131d0650b03973ce4c3b3fabeddff8a388cd07b9ea8bafc92bf150d6bd9'
+              },
+              {
+                id: '0x0015b6007a9adb7d242a276ba753553393a7d62fb80eecc87fd02bc100453ef6-0xfb16a595-4643',
+                tokenId: '4643',
+                buyer: '0xa16a56b9312c5dfa3263c36678530444e13fe2ca',
+                seller: '0xbdd95abe8a7694ccd77143376b0fbea183e6a740',
+                transactionHash: '0x0015b6007a9adb7d242a276ba753553393a7d62fb80eecc87fd02bc100453ef6'
+              },
+              {
+                id: '0x004c641caa00fb011d1fa69ee89956e5ca25ddec75c3085b9ec9d84ef1ed1040-0xfb16a595-8768',
+                tokenId: '8768',
+                buyer: '0x6efa7b45769842f83c926f4403d8a8417596e90b',
+                seller: '0xf6696e114437a65bf607ff4c4518b1a8d4379729',
+                transactionHash: '0x004c641caa00fb011d1fa69ee89956e5ca25ddec75c3085b9ec9d84ef1ed1040'
+              },
+              {
+                id: '0x005468c998fdc30dbe197efce8a267c2cb6d4a58eab0521fa956477a3777e8f2-0xfb16a595-158',
+                tokenId: '158',
+                buyer: '0xa4d0630e95c7760edd6433b6f692bcdd1c6c7086',
+                seller: '0x85c7cabc0ad3d57dc7c3b1467f74f3c2baa5f268',
+                transactionHash: '0x005468c998fdc30dbe197efce8a267c2cb6d4a58eab0521fa956477a3777e8f2'
+              },
+              {
+                id: '0x007299bebce8775ba5a2a299f5e875392f97553c6897272c8df2b3d53e262467-0xfb16a595-2869',
+                tokenId: '2869',
+                buyer: '0xeed40dba8679e62b2e25114b31e558b8a9dd52a7',
+                seller: '0xf10a0139ad676d19f688e092d67bece4af5f606f',
+                transactionHash: '0x007299bebce8775ba5a2a299f5e875392f97553c6897272c8df2b3d53e262467'
+              },
+              {
+                id: '0x0078f9042cf225d84686bbb4ca41ba907c6bcae9cc7f5a1f38b2047351dd2f81-0xf242432a-115727291697093654400263464018852276952111209432831640319412176438770926616577',
+                tokenId: '115727291697093654400263464018852276952111209432831640319412176438770926616577',
+                buyer: '0x80fa7a1c1bc11e540e2ccbb01b62002109f6cb4a',
+                seller: '0xffdb536da70eea896a5cc3d999414da9087815db',
+                transactionHash: '0x0078f9042cf225d84686bbb4ca41ba907c6bcae9cc7f5a1f38b2047351dd2f81'
+              },
+              {
+                id: '0x007e5d2edf712e76cc795852e24685e8a2d5c65076e94426a3c6c8b31bd99bbb-0xfb16a595-1810',
+                tokenId: '1810',
+                buyer: '0xb741a9619009f0b2eeb450dbaceed3dcab3a3604',
+                seller: '0xd58bdcf4c0eb57a8680db3207ef041212bb9f552',
+                transactionHash: '0x007e5d2edf712e76cc795852e24685e8a2d5c65076e94426a3c6c8b31bd99bbb'
+              },
+              {
+                id: '0x0095c90ed14702470092589d18ac0dfc77ece641025d7bb2e5be9d7773369498-0xfb16a595-3802',
+                tokenId: '3802',
+                buyer: '0x1fabfd128d498fef7da0190ef416a502375bf59a',
+                seller: '0x0d63ce76d906ac8b1cff88267730ffd7c1a83cb2',
+                transactionHash: '0x0095c90ed14702470092589d18ac0dfc77ece641025d7bb2e5be9d7773369498'
+              },
+              {
+                id: '0x009633708b9d70a5f0ec2a6e2a89f6176af055329acd446b87f9c6973ab9e8c8-0x96809f90-67828453090534394616700294383444395072775898889081391609707731690832779018490',
+                tokenId: '67828453090534394616700294383444395072775898889081391609707731690832779018490',
+                buyer: '0xcac5ace51139e728b92743da079258f49a10ffa3',
+                seller: '0x95f58b41f3428b2b0893e1a42af8fc9309f60fe1',
+                transactionHash: '0x009633708b9d70a5f0ec2a6e2a89f6176af055329acd446b87f9c6973ab9e8c8'
+              },
+              {
+                id: '0x00990ceaf20d75701df275b8ae2dc7feef37596b8321407a3bf78323baecc235-0xfb16a595-3294',
+                tokenId: '3294',
+                buyer: '0x8dda0fc9c710d57b2cd7e36b2d8232399133f5a3',
+                seller: '0x6d6f6223de1cdeb71aa21ffb77892e8ece9cc455',
+                transactionHash: '0x00990ceaf20d75701df275b8ae2dc7feef37596b8321407a3bf78323baecc235'
+              },
+              {
+                id: '0x00d478330b567e0d89f578c1f4c24f2693c4e6567e7f7edc8c356d7775b92d34-0xfb16a595-7783',
+                tokenId: '7783',
+                buyer: '0xc4faec38089d35077355e4c63d739063cd47fd05',
+                seller: '0xb95a461a8c65e4438de5885f034cfba0c06b8ea0',
+                transactionHash: '0x00d478330b567e0d89f578c1f4c24f2693c4e6567e7f7edc8c356d7775b92d34'
+              },
+              {
+                id: '0x00da5b7555809587263acb9218a16323533d8a9665e29c95f9a78bf4130964c2-0xfb16a595-4221',
+                tokenId: '4221',
+                buyer: '0xda0cb572f9651625fff69c39355c570872a11a23',
+                seller: '0xdf1fa21aad71c50e642fca3aa4332da17bbea409',
+                transactionHash: '0x00da5b7555809587263acb9218a16323533d8a9665e29c95f9a78bf4130964c2'
+              },
+              {
+                id: '0x00f48e43b35e4424fd3c96760f208c917ddb1ffb5c3f51ec3d6d39e52897500e-0xfb16a595-6804',
+                tokenId: '6804',
+                buyer: '0xaa00d8a002ab1473a08a0f8fe1f510f37e0a4996',
+                seller: '0x62a73271399f0127d38b37359594b632e2fc1799',
+                transactionHash: '0x00f48e43b35e4424fd3c96760f208c917ddb1ffb5c3f51ec3d6d39e52897500e'
+              },
+              {
+                id: '0x00fad7e0600f742b3593f51a32ec7bb39c0d54a17fd858b07ac0bc714fe6e166-0xfb16a595-3873',
+                tokenId: '3873',
+                buyer: '0x06634e075fe33d84d6b9d9b8848d9d5763219f8f',
+                seller: '0xfce6b7af9145a7cfd52f5eab4e21c54181960d3a',
+                transactionHash: '0x00fad7e0600f742b3593f51a32ec7bb39c0d54a17fd858b07ac0bc714fe6e166'
+              }
+            ]
+        });
+    });
+});
+

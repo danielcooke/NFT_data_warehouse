@@ -1,0 +1,73 @@
+const { request } = require('graphql-request');
+import { url, block_n, matched_orders_query } from "./constants.js";
+
+describe('Test Matched Orders', () => {
+    it('Returns the first five matched orders', async () => {
+        const variables = {first: 5, block_n: block_n};
+        const data = await request(url, matched_orders_query, variables);
+        expect(data).toEqual({
+          "ordersMatcheds": [
+            {
+              "id": "0x00010c8ae81ba824b57971ee3ffe1120b9366c5d0162770fd4528ce29855ae033c000000",
+              "buyHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+              "sellHash": "0x44484e5f54bb02200f7c38a7671e6a20a5033685dcd86e7311269ca4f9862e72",
+              "maker": "0xcf1d03bcb124f86675a101f6953994e37bdff2bc",
+              "taker": "0x68ac7e02cc82151508eb9dffbb9c8ab1dc409199",
+              "price": "250000000000000000",
+              "metadata": "0xd3a22d084dd16196b7862bc2d309412b508318fb000000000000000000000000",
+              "blockNumber": "7887029",
+              "blockTimestamp": "1559572938",
+              "transactionHash": "0x00010c8ae81ba824b57971ee3ffe1120b9366c5d0162770fd4528ce29855ae03"
+            },
+            {
+              "id": "0x0003154e8547a448f643185fde7920335a1ea756c5ace4c70e34edb00325740f7b000000",
+              "buyHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+              "sellHash": "0xc029a70c16ac9ad28efe54a1605b6631660750b60943e051c90d54910023db22",
+              "maker": "0x07b99b5a4093be2c4465d55fcaad50a3cb61447a",
+              "taker": "0xb61ce2b4347bf9a028611f98dbdc8658a47457a2",
+              "price": "170000000000000000",
+              "metadata": "0xc457eb1ed682abfa601985a7b0e87a33b006e54a5c4936f35e61184b18dd7a14",
+              "blockNumber": "6555411",
+              "blockTimestamp": "1540111376",
+              "transactionHash": "0x0003154e8547a448f643185fde7920335a1ea756c5ace4c70e34edb00325740f"
+            },
+            {
+              "id": "0x0007a4faba3aafd3972eedc3093c2976b1a6c28b1d7cff86c1ae16dc1aaa257c09000000",
+              "buyHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+              "sellHash": "0x53bf82b006d3b902be50edb637b071c89b6f9694b52022ded8f54ae93c505ca7",
+              "maker": "0x12bcefaff8878f84fdd4ce2f33c3b49ee43de948",
+              "taker": "0xf862c9413f2cc21ebfda534ecfa6df4f59f0b197",
+              "price": "131542596853070049",
+              "metadata": "0x0000000000000000000000000000000000000000000000000000000000000000",
+              "blockNumber": "6906881",
+              "blockTimestamp": "1545104575",
+              "transactionHash": "0x0007a4faba3aafd3972eedc3093c2976b1a6c28b1d7cff86c1ae16dc1aaa257c"
+            },
+            {
+              "id": "0x000815b829da9bba9a203a4f3741ebe471d4857ccbbe9efcd8d37594ddaf7ee227000000",
+              "buyHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+              "sellHash": "0x3d19b9ba099fa3ef83908b789151741cbf1b9195dde49634ad560d08d8103559",
+              "maker": "0x16707d2dc3f6d1a349b714ad119725ecc2be0cb6",
+              "taker": "0xfbb589251a5dcd955f51fc36e560b18fa8a5e974",
+              "price": "259869450307339110",
+              "metadata": "0x0000000000000000000000000000000000000000000000000000000000000000",
+              "blockNumber": "7551179",
+              "blockTimestamp": "1555045743",
+              "transactionHash": "0x000815b829da9bba9a203a4f3741ebe471d4857ccbbe9efcd8d37594ddaf7ee2"
+            },
+            {
+              "id": "0x000922a228bf605395219ed422dcd53bda199d27f1f4daf0d4d2577d7e204a431b000000",
+              "buyHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+              "sellHash": "0xdf4247513be0ab0f4eb73eb267064169c910470994eb5c2fb549130760f2bb1b",
+              "maker": "0xc00edfa98c782c580b335e414cd62597670a5e5c",
+              "taker": "0x104d7c320963e7914a570e9a511c5b1d545e4aba",
+              "price": "900000000000000",
+              "metadata": "0x0000000000000000000000000000000000000000000000000000000000000000",
+              "blockNumber": "7780590",
+              "blockTimestamp": "1558134527",
+              "transactionHash": "0x000922a228bf605395219ed422dcd53bda199d27f1f4daf0d4d2577d7e204a43"
+            }
+          ]
+        });
+    });
+});
